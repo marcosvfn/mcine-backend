@@ -1,0 +1,114 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+// ============ TABELAS TENTANT RAIZ =====================
+
+model Usuario {
+  id             Int @id @default(autoincrement())
+  email          String @unique
+  nome           String?
+  senha          String?
+  usuarioCinema  UsuarioCinema[] @relation()
+  createdAt       DateTime @default(now())
+  updateAt        DateTime @updatedAt
+}
+
+model Cinema {
+  id              String @id @default(uuid())
+  nome            String
+  usuarioCinema   UsuarioCinema[] @relation
+  createdAt       DateTime @default(now())
+  updateAt        DateTime @updatedAt
+}
+
+model UsuarioCinema {
+  id              Int @id @default(autoincrement())
+  user            Usuario @relation(fields: [idUsuario], references: [id], onDelete: Cascade)
+  cinema          Cinema @relation(fields: [idCinema], references: [id], onDelete: Cascade)
+  isAdmin         Boolean @default(false)
+  idUsuario       Int
+  idCinema        String
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+
+model Filmes {
+  id            String @id @default(uuid())
+  nome          String
+  sinopse       String
+  dtLancamento  DateTime
+  disponivel    Boolean @default(true)
+  linkTrailer   String @default("")
+  capaUrl       String
+  createdAt     DateTime @default(now())
+  updateAt      DateTime @updatedAt
+}
+
+// ============ TABELAS INDIVIDUAIS DE CADA CINEMA =====================
+
+model Sessao {
+  id              String @id @default(uuid())
+  idCinema        String
+  idFilme         String
+  dtSessao        DateTime
+  vlEntrada       Decimal   
+  horaInicio      String        
+  idSala          String    
+  sala            Sala @relation("SessaoToSala", fields: [idSala], references: [id], onDelete: Cascade)
+  assento         Assento[] @relation("AssentosToSessao")
+  ticket          Ticket[] @relation("TicketToSessao")
+  createdAt       DateTime @default(now())
+  updateAt        DateTime @updatedAt
+}
+
+model Sala {
+  id              String @id @default(uuid())
+  nome            String
+  idCinema        String
+  sessao          Sessao[] @relation("SessaoToSala")
+  capacidade      Int 
+  createdAt       DateTime @default(now())
+  updateAt        DateTime @updatedAt
+}
+
+model Assento {
+  id              String @id @default(uuid())
+  numero          Int
+  idSessao        String
+  reservado       Boolean
+  sessao          Sessao @relation("AssentosToSessao", fields: [idSessao], references: [id], onDelete: Cascade)
+  ticket          Ticket[] @relation("TicketToAssento")
+  createdAt       DateTime @default(now())
+  updateAt        DateTime @updatedAt
+}
+
+model Ticket {
+  id              String @id @default(uuid())
+  cpfReserva      String
+  nomeReserva     String
+  idAssento       String
+  assento         Assento @relation("TicketToAssento", fields: [idAssento], references: [id])
+  idSessao        String
+  sessao          Sessao @relation("TicketToSessao", fields: [idSessao], references: [id], onDelete: Cascade)
+  createdAt       DateTime @default(now())
+  updateAt        DateTime @updatedAt
+}
+
+model Avaliacao {
+  id             String @id @default(uuid())
+  idFilme        String
+  valor          Int
+  createdAt      DateTime @default(now())
+  updateAt       DateTime @updatedAt
+}
