@@ -24,17 +24,19 @@ A única informação disponível globalmente entre o tenant Raiz e o os tenant'
 	* username: postgres
 	* password: postgres
 		
-	 * 1. Criar um novo banco de dados PostgreSQL com nome "mcinedb"
+	 *  Criar um novo banco de dados PostgreSQL com nome "mcinedb"
+
 	    ```bash
 	    $ createdb -U postgres mcinedb
 	    ```
 			
-	* 2. Importar o backup do banco em "PastaDoProjeto"/db/db_backup.sql
+	*  Importar o backup do banco em "PastaDoProjeto"/db/db_backup.sql
+
 	    ```bash
 	    $ psql -U postgres -d mcinedb -f db_backup.sql
 	    ```
 		
-	* 3. Configurar a varíavel de ambiente "DATABASE_URL" para conexão com o prisma:	
+	*  Configurar a varíavel de ambiente "DATABASE_URL" para conexão com o prisma:	
 	- Modelo de URL da documentação: 
 		DATABASE_URL=postgresql://USER:PASSWORD@HOST:PORT/DATABASE?schema=SCHEMA
 	
@@ -47,6 +49,7 @@ A única informação disponível globalmente entre o tenant Raiz e o os tenant'
   - Fazer download do repositório
 	- Abrir com o terminal
 	- Instalar as dependências
+    
 	```bash
 	$ yarn install
 	```
@@ -62,6 +65,7 @@ A única informação disponível globalmente entre o tenant Raiz e o os tenant'
 	JWT_REFRESH_TOKEN_KEY="y1gdEYq9GtMlLrMY/nX1bjwn+Hmkag7oZiv6ZBlaQJwI64Q2Q7Gse1kpzmZECTsxbmfllVgbaNjqkbwt2/K/Ow=="
 	
 	- Executar a aplicação em Produção (Porta 8000)
+    
 	```bash
 	$ yarn start:prod
 	```
