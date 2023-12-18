@@ -16,9 +16,9 @@ A única informação disponível globalmente entre o tenant Raiz e o os tenant'
 	* Prisma
 	* DTO's - Class Validator
  
-## Instalação
+# Instalação
 
-# Banco de Dados
+## Banco de Dados
 - Dados locais utilizados:
 	* host: localhost:5432 
 	* username: postgres
@@ -43,6 +43,26 @@ A única informação disponível globalmente entre o tenant Raiz e o os tenant'
 	
 	PS: Se utiliza outro usuário e senha deve subistituir conforme o padrão da documentação.
 
-```bash
-$ yarn install
-```
+## Aplicação
+  - Fazer download do repositório
+	- Abrir com o terminal
+	- Instalar as dependências
+	```bash
+	$ yarn install
+	```
+	- Certifique-se de ter todas as váriaveis de ambiente no arquivo .env:
+	*  Database String URL for Prisma
+	DATABASE_URL="postgresql://postgres:postgres@localhost:5432/mcinedb?schema=public"
+
+	* Root tenant identifier
+	ROOT_TENANT_IDENTIFIER="root"
+
+	* JWT Sign Keys
+	JWT_SECRET_KEY="oZkGbnpOm8xpTU1y4Oa2ge6TPlEihZJWHyA/tWgU1GbvGz1Kk4S09gKQxyCKCMSy8D6kdqsPI8cmOQSzbWi7ZA=="
+	JWT_REFRESH_TOKEN_KEY="y1gdEYq9GtMlLrMY/nX1bjwn+Hmkag7oZiv6ZBlaQJwI64Q2Q7Gse1kpzmZECTsxbmfllVgbaNjqkbwt2/K/Ow=="
+	
+	- Executar a aplicação em Produção (Porta 8000)
+	```bash
+	$ yarn start:prod
+	```
+
