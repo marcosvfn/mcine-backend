@@ -37,11 +37,11 @@ A única informação disponível globalmente entre o tenant Raiz e o os tenant'
 	    ```
 		
 	*  Configurar a varíavel de ambiente "DATABASE_URL" para conexão com o prisma:	
-	- Modelo de URL da documentação: 
-		DATABASE_URL=postgresql://USER:PASSWORD@HOST:PORT/DATABASE?schema=SCHEMA
+		- Modelo de URL da documentação: 
+			- DATABASE_URL=postgresql://USER:PASSWORD@HOST:PORT/DATABASE?schema=SCHEMA
 	
-	- URL para os parâmetros informados acima:
-		DATABASE_URL="postgresql://postgres:postgres@localhost:5432/mcinedb?schema=public"
+		- URL para os parâmetros informados acima:
+			- DATABASE_URL="postgresql://postgres:postgres@localhost:5432/mcinedb?schema=public"
 	
 	PS: Se utiliza outro usuário e senha deve subistituir conforme o padrão da documentação.
 
@@ -55,14 +55,14 @@ A única informação disponível globalmente entre o tenant Raiz e o os tenant'
 	```
 	- Certifique-se de ter todas as váriaveis de ambiente no arquivo .env:
 	*  Database String URL for Prisma
-	DATABASE_URL="postgresql://postgres:postgres@localhost:5432/mcinedb?schema=public"
+		- DATABASE_URL="postgresql://postgres:postgres@localhost:5432/mcinedb?schema=public"
 
 	* Root tenant identifier
-	ROOT_TENANT_IDENTIFIER="root"
+		- ROOT_TENANT_IDENTIFIER="root"
 
 	* JWT Sign Keys
-	JWT_SECRET_KEY="oZkGbnpOm8xpTU1y4Oa2ge6TPlEihZJWHyA/tWgU1GbvGz1Kk4S09gKQxyCKCMSy8D6kdqsPI8cmOQSzbWi7ZA=="
-	JWT_REFRESH_TOKEN_KEY="y1gdEYq9GtMlLrMY/nX1bjwn+Hmkag7oZiv6ZBlaQJwI64Q2Q7Gse1kpzmZECTsxbmfllVgbaNjqkbwt2/K/Ow=="
+		- JWT_SECRET_KEY="oZkGbnpOm8xpTU1y4Oa2ge6TPlEihZJWHyA/tWgU1GbvGz1Kk4S09gKQxyCKCMSy8D6kdqsPI8cmOQSzbWi7ZA=="
+		- JWT_REFRESH_TOKEN_KEY="y1gdEYq9GtMlLrMY/nX1bjwn+Hmkag7oZiv6ZBlaQJwI64Q2Q7Gse1kpzmZECTsxbmfllVgbaNjqkbwt2/K/Ow=="
 	
 	- Executar a aplicação em Produção (Porta 8000)
     
