@@ -68,8 +68,13 @@ A única informação disponível globalmente entre o tenant Raiz e o os tenant'
 		- JWT_SECRET_KEY="oZkGbnpOm8xpTU1y4Oa2ge6TPlEihZJWHyA/tWgU1GbvGz1Kk4S09gKQxyCKCMSy8D6kdqsPI8cmOQSzbWi7ZA=="
 		- JWT_REFRESH_TOKEN_KEY="y1gdEYq9GtMlLrMY/nX1bjwn+Hmkag7oZiv6ZBlaQJwI64Q2Q7Gse1kpzmZECTsxbmfllVgbaNjqkbwt2/K/Ow=="
 	
-	- Executar a aplicação em Produção (Porta 8000)
-    
+	- Compilar a aplicação (Porta 8000)
+   
+	```bash
+	$ yarn start
+	```
+  	- Executar a aplicação em produção (Porta 8000)
+     
 	```bash
 	$ yarn start:prod
 	```
