@@ -1,73 +1,76 @@
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
+  <a href="http://marcosnascimento.vercel.app/" target="blank"><img src="https://res.cloudinary.com/dpmbuqjqj/image/upload/v1702862537/logo.mcine_mjupbm.svg" width="200" alt="mcine Logo" /></a>
 </p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## Descrição
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+Aplicação backend multi tenancy para gestão de cinemas desenvolvida como desafio técnico para uma vaga de desenvolvedor fullstack da empresa Jetimob com prazo de 15 dias de entrega. 
+A arquitetura escolhida foi "Schema Based Multi Tenancy", na qual cada cinema (tenant) cadastrado tem seu próprio schema dentro do banco de dados, garantindo a independência e a segurança dos dados entre os tenants. 
+O tenant "Root" é responsável por gerenciar os tenants filhos, podendo cadastrar cinemas, filmes, usuários e vinculá-los com os cinemas. 
+A única informação disponível globalmente entre o tenant Raiz e o os tenant's filhos são os filmes disponíveis ao cadastrar as sessões.
 
-## Description
+- Stacks utilizadas:
+	* PostgreSQL
+	* Typescript
+	* NestJS
+	* Prisma
+	* DTO's - Class Validator
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+ - Link para o Workspace no Postman com a documentação e exemplos da API
+   * https://app.getpostman.com/join-team?invite_code=629684de949abc7ee95dd5949d22231e&target_code=04a30a178473354fac53b20992577a15
+   
+# Instalação
 
-## Installation
+## Banco de Dados
+- Dados locais utilizados:
+	* host: localhost:5432 
+	* username: postgres
+	* password: postgres
 
-```bash
-$ yarn install
-```
+- Criar um novo banco de dados PostgreSQL com nome "mcinedb"
 
-## Running the app
+    ```bash
+    $ createdb -U postgres mcinedb
+    ```
+			
+- Importar o backup do banco em "PastaDoProjeto"/db/db_backup.sql
+  
+    ```bash
+    $ psql -U postgres -d mcinedb -f db_backup.sql
+    ```
+		
+- Configurar a varíavel de ambiente "DATABASE_URL" para conexão do banco com o prisma:	
+	* Modelo de URL da documentação: 
+		* DATABASE_URL=postgresql://USER:PASSWORD@HOST:PORT/DATABASE?schema=SCHEMA
 
-```bash
-# development
-$ yarn run start
+	* URL para os parâmetros informados acima:
+		* DATABASE_URL="postgresql://postgres:postgres@localhost:5432/mcinedb?schema=public"
+	
+	PS: Se utiliza outro usuário e senha deve subistituir conforme o padrão da documentação.
 
-# watch mode
-$ yarn run start:dev
+## Aplicação
+  - Fazer download do repositório
+	- Abrir com o terminal
+	- Instalar as dependências
+    
+	```bash
+	$ yarn install
+	```
+  
+	- Certifique-se de ter todas as 4 váriaveis de ambiente no arquivo .env:
+	*  Database String URL for Prisma
+		- DATABASE_URL="postgresql://postgres:postgres@localhost:5432/mcinedb?schema=public"
 
-# production mode
-$ yarn run start:prod
-```
+	* Root tenant identifier
+		- ROOT_TENANT_IDENTIFIER="root"
 
-## Test
+	* JWT Sign Keys
+		- JWT_SECRET_KEY="oZkGbnpOm8xpTU1y4Oa2ge6TPlEihZJWHyA/tWgU1GbvGz1Kk4S09gKQxyCKCMSy8D6kdqsPI8cmOQSzbWi7ZA=="
+		- JWT_REFRESH_TOKEN_KEY="y1gdEYq9GtMlLrMY/nX1bjwn+Hmkag7oZiv6ZBlaQJwI64Q2Q7Gse1kpzmZECTsxbmfllVgbaNjqkbwt2/K/Ow=="
+	
+	- Executar a aplicação em Produção (Porta 8000)
+    
+	```bash
+	$ yarn start:prod
+	```
 
-```bash
-# unit tests
-$ yarn run test
-
-# e2e tests
-$ yarn run test:e2e
-
-# test coverage
-$ yarn run test:cov
-```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
