@@ -36,7 +36,7 @@ A única informação disponível globalmente entre o tenant Raiz e o os tenant'
     $ psql -U postgres -d mcinedb -f db_backup.sql
     ```
 		
-- Configurar a varíavel de ambiente "DATABASE_URL" para conexão com o prisma:	
+- Configurar a varíavel de ambiente "DATABASE_URL" para conexão do banco com o prisma:	
 	* Modelo de URL da documentação: 
 		* DATABASE_URL=postgresql://USER:PASSWORD@HOST:PORT/DATABASE?schema=SCHEMA
 
