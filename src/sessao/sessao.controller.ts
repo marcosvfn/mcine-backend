@@ -5,7 +5,6 @@ import {
   Get,
   Param,
   Patch,
-  Request,
   Post,
   UseGuards,
 } from "@nestjs/common";
@@ -21,6 +20,11 @@ export class SessaoController {
   @Get("all")
   async getAll() {
     return await this.sessaoService.getAll();
+  }
+
+  @Get("filme/:id")
+  async getSessoesPassadasEFuturasByFilme(@Param("id") idFilme: string) {
+    return await this.sessaoService.getSessoesPassadasEFuturasByFilme(idFilme);
   }
 
   @UseGuards(JwtGuard)

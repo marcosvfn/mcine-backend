@@ -4,6 +4,7 @@ import { ValidationPipe } from "@nestjs/common";
 import { AggregateByTenantContextIdStrategy } from "./prisma-provider";
 
 async function bootstrap() {
+  process.env.TZ = "America/Sao_Paulo";
   const app = await NestFactory.create(AppModule);
 
   app.enableCors();

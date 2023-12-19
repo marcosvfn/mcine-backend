@@ -5,8 +5,7 @@ import { DefaultArgs } from "@prisma/client/runtime/library";
 import { addDays, addHours, format } from "date-fns";
 import { FilmesService } from "src/filmes/filmes.service";
 import { CinemaService } from "src/cinema/cinema.service";
-import { ptBR } from "date-fns/locale";
-import { utcToZonedTime } from "date-fns-tz";
+import { AvaliacaoService } from "src/avaliacao/avaliacao.service";
 
 @Injectable()
 export class SessaoService {
@@ -14,6 +13,7 @@ export class SessaoService {
     private prisma: PrismaClient,
     private filmesService: FilmesService,
     private cinemaService: CinemaService,
+    private avaliacaoService: AvaliacaoService,
   ) {}
 
   async getAll() {
@@ -562,4 +562,68 @@ export class SessaoService {
       throw new HttpException(error.response, error.status);
     }
   }
+
+  async getSessoesPassadasEFuturasByFilme(idFilme: string) {
+    const today = new Date();
+
+    const sessoes = await this.prisma.sessao.findMany({
+      where: {
+        idFilme: idFilme,
+      },
+    });
+
+    const sesoesWithExtraData = await Promise.all(
+      sessoes.map(async (sessao) => {
+        const nomeFilme =
+          await this.filmesService.getNomeFilmeExternal(idFilme);
+
+        const capaUrl = await this.filmesService.getCapaFilmeExternal(idFilme);
+
+        const avaliacao: LocalAvaliacao[] = await this.prisma
+          .$queryRaw`SELECT a."valor" FROM "public"."Avaliacao" a where a."idFilme" = ${idFilme}`;
+
+        return {
+          ...sessao,
+          nomeFilme: nomeFilme,
+          avaliacao: avaliacao.length > 0 ? avaliacao[0].nota : 0,
+          capaUrl: capaUrl,
+        };
+      }),
+    );
+
+    const sessoesPassadas = {};
+    const sessoesFuturas = {};
+
+    for (const sessao of sesoesWithExtraData) {
+      const dataSessao = new Date(sessao.dtSessao);
+
+      const formattedDate = `${dataSessao.getDate()}/${
+        dataSessao.getMonth() + 1
+      }/${dataSessao.getFullYear()}`;
+
+      if (dataSessao < today) {
+        if (!sessoesPassadas[formattedDate]) {
+          sessoesPassadas[formattedDate] = { data: formattedDate, sessoes: [] };
+        }
+        sessoesPassadas[formattedDate].sessoes.push(sessao);
+      } else {
+        if (!sessoesFuturas[formattedDate]) {
+          sessoesFuturas[formattedDate] = { data: formattedDate, sessoes: [] };
+        }
+        sessoesFuturas[formattedDate].sessoes.push(sessao);
+      }
+    }
+
+    const sessoesPassadasArray = Object.values(sessoesPassadas);
+    const sessoesFuturasArray = Object.values(sessoesFuturas);
+
+    return {
+      SessoesPassadas: sessoesPassadasArray,
+      SessoesFuturas: sessoesFuturasArray,
+    };
+  }
 }
+
+type LocalAvaliacao = {
+  nota: number;
+};

@@ -1,4 +1,4 @@
-import { IsEmail, IsString, IsArray } from "class-validator";
+import { IsEmail, IsString } from "class-validator";
 
 type CinemaInfo = {
   idCinema: string;

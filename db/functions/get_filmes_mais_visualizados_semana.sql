@@ -26,8 +26,8 @@ BEGIN
             INNER JOIN
                 public."Cinema" c ON s."idCinema" = c.id
             WHERE
-                s."dtSessao" >= %2$L
-                AND s."dtSessao" < NOW()
+                t."createdAt" >= %2$L
+                AND t."createdAt" < NOW()
             GROUP BY
                 f.nome, c.nome
             ORDER BY

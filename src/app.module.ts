@@ -1,4 +1,4 @@
-import { FactoryProvider, Global, Module, Scope } from "@nestjs/common";
+import { Global, Module } from "@nestjs/common";
 import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
 import { ConfigModule } from "@nestjs/config";
@@ -12,9 +12,9 @@ import { prismaClientProvider } from "./prisma-provider";
 import { PrismaClientManager } from "./prisma.service";
 import { PrismaClient } from "@prisma/client";
 import { UsuarioModule } from "./usuario/usuario.module";
-import { AssentoModule } from './assento/assento.module';
-import { TicketModule } from './ticket/ticket.module';
-import { AvaliacaoModule } from './avaliacao/avaliacao.module';
+import { AssentoModule } from "./assento/assento.module";
+import { TicketModule } from "./ticket/ticket.module";
+import { AvaliacaoModule } from "./avaliacao/avaliacao.module";
 
 @Global()
 @Module({

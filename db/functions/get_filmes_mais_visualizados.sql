@@ -25,9 +25,9 @@ BEGIN
             INNER JOIN
                 public."Cinema" c ON s."idCinema" = c.id
             WHERE
-                s."dtSessao" < NOW()
+                t."createdAt" < NOW()
             GROUP BY
-                f.nome, c.nome
+                s."dtSessao", c.nome
             ORDER BY
                 COUNT(t.id) DESC
             LIMIT 3

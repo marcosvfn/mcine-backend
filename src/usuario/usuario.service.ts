@@ -1,9 +1,4 @@
-import {
-  Body,
-  ConflictException,
-  HttpException,
-  Injectable,
-} from "@nestjs/common";
+import { ConflictException, HttpException, Injectable } from "@nestjs/common";
 import { CreateUserDto, EmailDto } from "./dto/user.dto";
 import { hash } from "bcrypt";
 import { PrismaClient } from "@prisma/client";
@@ -52,7 +47,6 @@ export class UsuarioService {
           },
           data: {
             ...userInfo,
-            senha: await hash(dto.senha, 10),
           },
         });
 

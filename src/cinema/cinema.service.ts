@@ -1,7 +1,6 @@
 import { ConflictException, HttpException, Injectable } from "@nestjs/common";
-import { CreateCinemaDto, EditCinemaDto } from "./dto/cinema.dto";
+import { EditCinemaDto } from "./dto/cinema.dto";
 import { PrismaClient } from "@prisma/client";
-import { addHours, format } from "date-fns";
 
 @Injectable()
 export class CinemaService {

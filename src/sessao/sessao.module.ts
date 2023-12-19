@@ -15,6 +15,7 @@ import { AvaliacaoService } from "src/avaliacao/avaliacao.service";
     FilmesService,
     CinemaService,
     AssentoService,
+    AvaliacaoService,
   ],
   controllers: [SessaoController],
 })

@@ -25,8 +25,8 @@ BEGIN
                 %1$I."Ticket" t ON s.id = t."idSessao"
             WHERE
                 c."id" = $1
-                AND s."dtSessao" >= $2
-                AND s."dtSessao" < NOW()
+                AND t."createdAt" >= $2
+                AND t."createdAt" < NOW()
             GROUP BY
                 nomeCinema, mesReferencia
         ', schema_name) 

@@ -1,5 +1,5 @@
 import { Prisma, PrismaClient } from "@prisma/client";
-import { ConflictException, Injectable, OnModuleDestroy } from "@nestjs/common";
+import { Injectable, OnModuleDestroy } from "@nestjs/common";
 import { DefaultArgs } from "@prisma/client/runtime/library";
 
 @Injectable()
