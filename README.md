@@ -23,25 +23,25 @@ A única informação disponível globalmente entre o tenant Raiz e o os tenant'
 	* host: localhost:5432 
 	* username: postgres
 	* password: postgres
-		
-	 *  Criar um novo banco de dados PostgreSQL com nome "mcinedb"
+ * 
+- Criar um novo banco de dados PostgreSQL com nome "mcinedb"
 
-	    ```bash
-	    $ createdb -U postgres mcinedb
-	    ```
+    ```bash
+    $ createdb -U postgres mcinedb
+    ```
 			
-	*  Importar o backup do banco em "PastaDoProjeto"/db/db_backup.sql
-
-	    ```bash
-	    $ psql -U postgres -d mcinedb -f db_backup.sql
-	    ```
+- Importar o backup do banco em "PastaDoProjeto"/db/db_backup.sql
+  
+    ```bash
+    $ psql -U postgres -d mcinedb -f db_backup.sql
+    ```
 		
-	*  Configurar a varíavel de ambiente "DATABASE_URL" para conexão com o prisma:	
-		- Modelo de URL da documentação: 
-			- DATABASE_URL=postgresql://USER:PASSWORD@HOST:PORT/DATABASE?schema=SCHEMA
-	
-		- URL para os parâmetros informados acima:
-			- DATABASE_URL="postgresql://postgres:postgres@localhost:5432/mcinedb?schema=public"
+- Configurar a varíavel de ambiente "DATABASE_URL" para conexão com o prisma:	
+	* Modelo de URL da documentação: 
+		* DATABASE_URL=postgresql://USER:PASSWORD@HOST:PORT/DATABASE?schema=SCHEMA
+
+	* URL para os parâmetros informados acima:
+		* DATABASE_URL="postgresql://postgres:postgres@localhost:5432/mcinedb?schema=public"
 	
 	PS: Se utiliza outro usuário e senha deve subistituir conforme o padrão da documentação.
 
