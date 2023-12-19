@@ -16,7 +16,7 @@ A única informação disponível globalmente entre o tenant Raiz e o os tenant'
 	* Prisma
 	* DTO's - Class Validator
 
- - Link para o Workspace no Postman com a documentação e exemplos da APi
+ - Link para o Workspace no Postman com a documentação e exemplos da API
    * https://app.getpostman.com/join-team?invite_code=629684de949abc7ee95dd5949d22231e&target_code=04a30a178473354fac53b20992577a15
    
 # Instalação
