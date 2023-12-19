@@ -23,7 +23,7 @@ A única informação disponível globalmente entre o tenant Raiz e o os tenant'
 	* host: localhost:5432 
 	* username: postgres
 	* password: postgres
- * 
+
 - Criar um novo banco de dados PostgreSQL com nome "mcinedb"
 
     ```bash
