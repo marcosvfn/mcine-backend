@@ -585,7 +585,7 @@ export class SessaoService {
         return {
           ...sessao,
           nomeFilme: nomeFilme,
-          avaliacao: avaliacao.length > 0 ? avaliacao[0].nota : 0,
+          avaliacao: avaliacao.length > 0 ? avaliacao[0].valor : 0,
           capaUrl: capaUrl,
         };
       }),
@@ -625,5 +625,5 @@ export class SessaoService {
 }
 
 type LocalAvaliacao = {
-  nota: number;
+  valor: number;
 };
