@@ -53,7 +53,8 @@ A única informação disponível globalmente entre o tenant Raiz e o os tenant'
 	```bash
 	$ yarn install
 	```
-	- Certifique-se de ter todas as váriaveis de ambiente no arquivo .env:
+  
+	- Certifique-se de ter todas as 4 váriaveis de ambiente no arquivo .env:
 	*  Database String URL for Prisma
 		- DATABASE_URL="postgresql://postgres:postgres@localhost:5432/mcinedb?schema=public"
 
