@@ -83,7 +83,7 @@ export class SessaoService {
       const Sessao = this.prisma.$transaction(async (transactionClient) => {
         const { agendarSemana, ...insertData } = dto;
 
-        const salaOcupada = await transactionClient.sessao.findFirst({
+        const salaOcupada = await transactionClient.sessao.findMany({
           where: {
             idSala: dto.idSala,
             horaInicio: dto.horaInicio,
