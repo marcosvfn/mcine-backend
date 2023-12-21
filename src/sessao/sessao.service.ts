@@ -91,7 +91,7 @@ export class SessaoService {
           },
         });
 
-        if (salaOcupada)
+        if (salaOcupada.length > 0)
           throw new ConflictException("Sala ocupada no horário informado");
 
         const newSessoes = await this.createSessions(
