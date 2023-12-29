@@ -4,7 +4,7 @@
 
 ## Descrição
 
-Aplicação backend multi tenancy para gestão de cinemas desenvolvida como desafio técnico para uma vaga de desenvolvedor fullstack da empresa Jetimob com prazo de 15 dias de entrega. 
+Aplicação backend multi tenancy para gestão de cinemas.
 A arquitetura escolhida foi "Schema Based Multi Tenancy", na qual cada cinema (tenant) cadastrado tem seu próprio schema dentro do banco de dados, garantindo a independência e a privacidade dos dados entre os tenants. 
 O tenant "Root" é responsável por gerenciar os tenants filhos, podendo cadastrar cinemas, filmes, usuários e vinculá-los com os cinemas. 
 A única informação disponível globalmente entre o tenant Raiz e o os tenant's filhos são os filmes disponíveis ao cadastrar as sessões.
